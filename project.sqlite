@@ -1,0 +1,37 @@
+ ---- what are the column names?
+
+ select count(*) from met;
+
+---- Count the number of pieces where the category includes ‘celery’
+
+ select count(*) from met
+ where category like "%celery%";
+
+---- Find the title and medium of the oldest piece(s) in the collection
+
+ select min(date) from met;
+
+ select title, medium
+ from met
+ where date like "%1600%";
+
+----Find the top 10 countries with the most pieces in the collection.
+
+ select country, count(*) from met
+  where country is not null
+ group by country
+ order by count(*) desc
+ limit 10;
+
+--- Find the categories HAVING more than 100 pieces.
+
+select category, count(*) from met
+group by category
+having count(*) > 100;
+
+---Count the number of pieces where the medium contains ‘gold’ or ‘silver’.
+
+select medium, count(*) from met
+where medium like "%Gold%" or medium like "%Silver%"
+group by medium
+order by count(*) desc;
